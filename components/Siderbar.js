@@ -5,13 +5,23 @@ import {
     PlusCircleIcon,
     HeartIcon,
     RssIcon,
-    PlayIcon
+    PlayIcon,
+    SwitchHorizontalIcon,
+    CogIcon
  } from '@heroicons/react/outline'
+import {signOut, useSession} from "next-auth/react"
 
 function Siderbar() {
+    const {data:session , status} = useSession();
+    //console.log(session);
     return (
-        <div className=' text-gray-500 p-5 text-sm border-r border-gray-900 '>
+        <div className=' text-gray-500 p-5 text-sm border-r overflow-y-scroll scrollbar-hide border-gray-900 '>
             <div className=' space-y-4 ' >
+                <button onClick={() => signOut()} className='flex space-x-2 hover:text-white' >
+                   <CogIcon className='h-5 w-5' />
+                   <p>Logout</p>
+                </button>
+                <hr className=' border-t-[0.1px] border-gray-900 ' />
                 <button className='flex space-x-2 hover:text-white' >
                    <HomeIcon className='h-5 w-5' />
                    <p>Home</p>
@@ -55,6 +65,7 @@ function Siderbar() {
                     <PlayIcon className='h-5 w-5' />
                     <p>Playlist Name</p> 
                 </button>
+                
                 
 
             </div>

@@ -1,6 +1,6 @@
-import NextAuth from 'next-auth';
-import SpotifyProvider from 'next-auth/providers/spotify';
-import SpotifyAPI, { LOGIN_URL } from '../../../lib/spotify';
+import NextAuth from "next-auth"
+import SpotifyProvider from "next-auth/providers/spotify"
+import SpotifyAPI, { LOGIN_URL } from "../../../lib/spotify"
 
 async function refreshAccessToken(token) {
   try {
@@ -14,7 +14,7 @@ async function refreshAccessToken(token) {
     return {
       ...token,
       accessToken: refreshedToken.access_token,
-      accessTokenExpires: Date.now() + refreshToken.expires_in * 1000,
+      accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000,
       refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
     };
   } catch (error) {
